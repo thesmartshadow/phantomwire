@@ -93,7 +93,7 @@ Exit codes: `0` success, `2` when high-severity findings exist, `1` for operatio
 ## Development
 
 ```bash
-git clone [https://github.com/phantomwire/phantomwire](https://github.com/thesmartshadow/phantomwire).git
+git clone https://github.com/phantomwire/phantomwire.git
 cd phantomwire
 pip install -e .[dev]
 pre-commit install
