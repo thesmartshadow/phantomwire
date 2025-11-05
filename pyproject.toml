@@ -1,47 +1,62 @@
 [build-system]
-requires = ["hatchling>=1.25"]
+requires = [
+    "hatchling>=1.25",
+]
 build-backend = "hatchling.build"
 
 [project]
 name = "phantomwire"
 version = "0.1.0"
 description = "Defensive-offensive cybersecurity and networking analysis toolkit"
-readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
-license = { text = "MIT" }
 authors = [
-  { name = "Phantomwire Maintainers", email = "maintainers@phantomwire.org" }
+    { name = "Phantomwire Maintainers", email = "maintainers@phantomwire.org" },
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Intended Audience :: Information Technology",
-  "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
-  "Natural Language :: English",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Topic :: Security",
-  "Topic :: System :: Networking :: Monitoring",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: System :: Networking :: Monitoring",
 ]
-
 dependencies = []
 
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.license]
+text = "MIT"
+
 [project.optional-dependencies]
-web = ["httpx>=0.27"]
-crypto = ["cryptography>=43"]
-pcap = ["dpkt>=1.9.8"]
-dns = ["dnspython>=2.6"]
+web = [
+    "httpx>=0.27",
+]
+crypto = [
+    "cryptography>=43",
+]
+pcap = [
+    "dpkt>=1.9.8",
+]
+dns = [
+    "dnspython>=2.6",
+]
 dev = [
-  "pytest>=8",
-  "coverage>=7",
-  "mypy>=1.11",
-  "ruff>=0.6",
-  "build>=1",
-  "twine>=5",
-  "hypothesis>=6",
+    "pytest>=8",
+    "coverage>=7",
+    "mypy>=1.11",
+    "ruff>=0.6",
+    "build>=1",
+    "twine>=5",
+    "hypothesis>=6",
+    "pytest-cov>=4",
 ]
 
 [project.urls]
@@ -53,32 +68,40 @@ Documentation = "https://github.com/thesmartshadow/phantomwire#readme"
 phantom = "phantomwire.cli.main:main"
 
 [project.entry-points."phantomwire.plugins"]
-"phantomwire-example" = "plugins.example_plugin:get_plugin"
+phantomwire-example = "plugins.example_plugin:get_plugin"
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.sdist]
 include = [
-  "phantomwire",
-  "plugins",
-  "tests",
-  "README.md",
-  "LICENSE",
-  "SECURITY.md",
-  "CONTRIBUTING.md",
-  "CODE_OF_CONDUCT.md",
-  "pyproject.toml",
-  "CHANGELOG.md",
+    "phantomwire",
+    "plugins",
+    "tests",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "pyproject.toml",
+    "CHANGELOG.md",
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["phantomwire", "plugins"]
+packages = [
+    "phantomwire",
+    "plugins",
+]
 
 [tool.coverage.run]
 branch = true
-source = ["phantomwire"]
-omit = ["phantomwire/cli/*", "tests/*"]
+source = [
+    "phantomwire",
+]
+omit = [
+    "phantomwire/cli/*",
+    "tests/*",
+]
 
 [tool.coverage.report]
 show_missing = true
@@ -89,15 +112,26 @@ line-length = 100
 target-version = "py310"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "N", "RUF100"]
+select = [
+    "E",
+    "F",
+    "I",
+    "N",
+    "RUF100",
+]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["F401", "F841"]
-
+"tests/**" = [
+    "F401",
+    "F841",
+]
 
 [tool.mypy]
 python_version = "3.12"
-packages = ["phantomwire", "plugins"]
+packages = [
+    "phantomwire",
+    "plugins",
+]
 ignore_missing_imports = true
 warn_unused_configs = true
 warn_return_any = false
@@ -105,16 +139,17 @@ check_untyped_defs = false
 strict_optional = false
 no_implicit_optional = false
 pretty = true
-exclude = ["tests/"]
-
+exclude = [
+    "tests/",
+]
 disable_error_code = [
-  "arg-type",
-  "attr-defined",
-  "call-arg",
-  "misc",
-  "no-any-return",
-  "return-value",
-  "type-arg",
-  "unused-ignore",
-  "union-attr",
+    "arg-type",
+    "attr-defined",
+    "call-arg",
+    "misc",
+    "no-any-return",
+    "return-value",
+    "type-arg",
+    "unused-ignore",
+    "union-attr",
 ]
