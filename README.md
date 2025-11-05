@@ -1,7 +1,7 @@
 # Phantomwire
 
 [![PyPI](https://img.shields.io/pypi/v/phantomwire.svg)](https://pypi.org/project/phantomwire/)
-[![CI](https://github.com/phantomwire/phantomwire/actions/workflows/ci.yml/badge.svg)](https://github.com/phantomwire/phantomwire/actions/workflows/ci.yml)
+[![CI](https://github.com/thesmartshadow/phantomwire/actions/workflows/ci.yml/badge.svg)](https://github.com/thesmartshadow/phantomwire/actions/workflows/ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-80%25+-brightgreen.svg)](#testing)
 
 Phantomwire is a defensive-offensive cybersecurity toolkit focused on auditable operations.
@@ -93,7 +93,7 @@ Exit codes: `0` success, `2` when high-severity findings exist, `1` for operatio
 ## Development
 
 ```bash
-git clone https://github.com/phantomwire/phantomwire.git
+git clone https://github.com/thesmartshadow/phantomwire.git
 cd phantomwire
 pip install -e .[dev]
 pre-commit install
