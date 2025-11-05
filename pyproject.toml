@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "phantomwire"
-version = "0.1.0.post2"
+version = "0.1.1"
 description = "Defensive-offensive cybersecurity and networking analysis toolkit"
 requires-python = ">=3.10"
 authors = [
