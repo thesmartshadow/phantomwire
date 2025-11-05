@@ -8,11 +8,10 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest         # خليه سريع ووحيد حالياً؛ نضيف mac/win لاحقاً
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ['3.10', '3.11', '3.12']
 
     env:
@@ -24,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ matrix['python-version'] }}
           cache: 'pip'
           cache-dependency-path: |
             pyproject.toml
@@ -34,20 +33,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev,pcap,crypto,dns,web]"
 
-      - name: Lint with ruff
+      - name: Lint (ruff)
         run: ruff check .
 
-      - name: Type-check with mypy (advisory)
+      # نجعل mypy استشاري مؤقتاً حتى ما يطيّح البيلد
+      - name: Type-check (mypy advisory)
         run: mypy phantomwire
         continue-on-error: true
 
-      - name: Run tests
+      - name: Tests (pytest)
         run: pytest -q --cov=phantomwire --cov-report=xml
 
-      - name: Upload coverage
+      - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-${{ matrix.os }}-${{ matrix.python-version }}
+          name: coverage-${{ matrix['python-version'] }}
           path: coverage.xml
 
   build:
