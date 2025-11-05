@@ -38,11 +38,11 @@ jobs:
 
       - name: Install package + dev tools (explicit)
         run: |
-          # نثبت الباكيج مع الإضافات
+          # الباكيج مع الإضافات
           pip install -e ".[pcap,crypto,dns,web]"
-          # نثبت أدوات CI صراحةً لتجنب أي مشكلة في extras
-          pip install "ruff>=0.6" "mypy>=1.11" "pytest>=8" "coverage>=7" "build>=1"
-          pip list | egrep "ruff|mypy|pytest|coverage|build|phantomwire" || true
+          # أدوات CI صراحةً (يتضمن pytest-cov)
+          pip install "ruff>=0.6" "mypy>=1.11" "pytest>=8" "pytest-cov>=4" "coverage>=7" "build>=1"
+          pip list | egrep "ruff|mypy|pytest|pytest-cov|coverage|build|phantomwire" || true
 
       - name: Lint (ruff)
         run: ruff check .
