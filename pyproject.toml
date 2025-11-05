@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "phantomwire"
+version = "0.1.0"
+description = "Defensive-offensive cybersecurity and networking analysis toolkit"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+  {name = "Phantomwire Maintainers", email = "maintainers@phantomwire.org"}
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Topic :: System :: Networking :: Monitoring",
+]
+dependencies = []
+dynamic = []
+
+[project.optional-dependencies]
+web = ["httpx>=0.27"]
+crypto = ["cryptography>=43"]
+pcap = ["dpkt>=1.9.8"]
+dns = ["dnspython>=2.6"]
+dev = [
+  "pytest>=8",
+  "coverage>=7",
+  "mypy>=1.11",
+  "ruff>=0.6",
+  "build>=1",
+  "twine>=5",
+  "hypothesis>=6",
+]
+
+[project.urls]
+Homepage = "https://github.com/phantomwire/phantomwire"
+Documentation = "https://github.com/phantomwire/phantomwire#readme"
+"Bug Tracker" = "https://github.com/phantomwire/phantomwire/issues"
+
+[project.scripts]
+phantom = "phantomwire.cli.main:main"
+
+[project.entry-points."phantomwire.plugins"]
+"phantomwire-example" = "plugins.example_plugin:get_plugin"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.sdist]
+include = ["phantomwire", "plugins", "tests", "README.md", "LICENSE", "SECURITY.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "pyproject.toml", "CHANGELOG.md"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["phantomwire", "plugins"]
+
+[tool.coverage.run]
+branch = true
+source = ["phantomwire"]
+omit = ["phantomwire/cli/*", "tests/*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "RUF100"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_configs = true
+warn_return_any = true
+strict = true
+packages = ["phantomwire", "plugins"]
