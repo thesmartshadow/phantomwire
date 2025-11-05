@@ -9,4 +9,4 @@ __all__ = [
     "Target",
 ]
 
-__version__ = "0.1.0.post1"
+__version__ = "0.1.0.post2"
