@@ -17,7 +17,7 @@ Limit allowed scopes to hosts you control via CLI flags or configuration.
 
 ## Reporting a Vulnerability
 
-Please report suspected vulnerabilities to maintainers@phantomwire.org. Include:
+Please report suspected vulnerabilities to firaswq12@gmail.com. Include:
 
 - Description of the issue and potential impact
 - Reproduction steps or proof-of-concept (when safe)
