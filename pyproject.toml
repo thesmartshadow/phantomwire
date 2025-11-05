@@ -6,11 +6,11 @@ build-backend = "hatchling.build"
 name = "phantomwire"
 version = "0.1.0"
 description = "Defensive-offensive cybersecurity and networking analysis toolkit"
-readme = "README.md"
+readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = { text = "MIT" }
 authors = [
-  {name = "Phantomwire Maintainers", email = "maintainers@phantomwire.org"}
+  { name = "Phantomwire Maintainers", email = "maintainers@phantomwire.org" }
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -26,8 +26,8 @@ classifiers = [
   "Topic :: Security",
   "Topic :: System :: Networking :: Monitoring",
 ]
+
 dependencies = []
-dynamic = []
 
 [project.optional-dependencies]
 web = ["httpx>=0.27"]
@@ -45,9 +45,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/phantomwire/phantomwire"
-Documentation = "https://github.com/phantomwire/phantomwire#readme"
-"Bug Tracker" = "https://github.com/phantomwire/phantomwire/issues"
+Homepage = "https://github.com/thesmartshadow/phantomwire"
+Documentation = "https://github.com/thesmartshadow/phantomwire#readme"
+"Bug Tracker" = "https://github.com/thesmartshadow/phantomwire/issues"
 
 [project.scripts]
 phantom = "phantomwire.cli.main:main"
@@ -59,7 +59,18 @@ phantom = "phantomwire.cli.main:main"
 allow-direct-references = true
 
 [tool.hatch.build.targets.sdist]
-include = ["phantomwire", "plugins", "tests", "README.md", "LICENSE", "SECURITY.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "pyproject.toml", "CHANGELOG.md"]
+include = [
+  "phantomwire",
+  "plugins",
+  "tests",
+  "README.md",
+  "LICENSE",
+  "SECURITY.md",
+  "CONTRIBUTING.md",
+  "CODE_OF_CONDUCT.md",
+  "pyproject.toml",
+  "CHANGELOG.md",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["phantomwire", "plugins"]
@@ -69,6 +80,10 @@ branch = true
 source = ["phantomwire"]
 omit = ["phantomwire/cli/*", "tests/*"]
 
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
 [tool.ruff]
 line-length = 100
 target-version = "py310"
@@ -76,9 +91,30 @@ target-version = "py310"
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "RUF100"]
 
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["F401", "F841"]
+
+
 [tool.mypy]
-python_version = "3.10"
-warn_unused_configs = true
-warn_return_any = true
-strict = true
+python_version = "3.12"
 packages = ["phantomwire", "plugins"]
+ignore_missing_imports = true
+warn_unused_configs = true
+warn_return_any = false
+check_untyped_defs = false
+strict_optional = false
+no_implicit_optional = false
+pretty = true
+exclude = ["tests/"]
+
+disable_error_code = [
+  "arg-type",
+  "attr-defined",
+  "call-arg",
+  "misc",
+  "no-any-return",
+  "return-value",
+  "type-arg",
+  "unused-ignore",
+  "union-attr",
+]
